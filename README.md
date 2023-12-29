@@ -2,7 +2,7 @@
 - 👀 I’m interested in .Net + JS Framworks (AngularJS, LWC, Aura, React) & Salesforce
 - 🌱 I’m currently learning Saleforce
 - 💞️ I’m looking to collaborate on ...
-- 📫 How to reach me @rjsimmons_ca instagram
+- 📫 How to reach me @ 
 
 <!---
 RJSIMMONS/RJSIMMONS is a ✨ special ✨ repository because its `README.md` (this file) appears on your GitHub profile.
