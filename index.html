@@ -112,9 +112,15 @@ img{max-width:100%;display:block}
   border:1px solid rgba(255,255,255,.16);
   box-shadow:0 18px 50px rgba(0,0,0,.5), 0 0 60px rgba(15,162,158,.16);
   filter:brightness(1.06) contrast(.97) saturate(1.06)}
+.hero-right{display:flex;flex-direction:column;align-items:center;gap:18px;justify-self:end}
+.ranger{display:block;line-height:0;transition:transform .18s}
+.ranger img{width:clamp(110px,13vw,148px);height:auto;filter:drop-shadow(0 8px 20px rgba(0,0,0,.45))}
+.ranger:hover{transform:translateY(-2px)}
 @media (max-width:820px){
   .hero-layout{grid-template-columns:1fr;gap:26px}
-  .portrait{order:-1;justify-self:start;width:128px}
+  .hero-right{order:-1;flex-direction:row;align-items:center;gap:16px;justify-self:start}
+  .portrait{width:128px}
+  .ranger img{width:84px}
 }
 
 /* ---------- skills ---------- */
@@ -300,7 +306,13 @@ img{max-width:100%;display:block}
           <div class="stat"><div class="n">5</div><div class="l">Companies · 4 countries</div></div>
         </div>
       </div>
-      <figure class="portrait" role="img" aria-label="Photo of Richard Jason Simmons"></figure>
+      <div class="hero-right">
+        <figure class="portrait" role="img" aria-label="Photo of Richard Jason Simmons"></figure>
+        <a class="ranger" href="https://www.salesforce.com/trailblazer/rjsimmonssl" target="_blank" rel="noopener"
+           title="Salesforce Trailblazer — Triple Star Ranger">
+          <img src="images/triple-star-ranger.png" alt="Salesforce Trailblazer Triple Star Ranger rank">
+        </a>
+      </div>
     </div>
   </section>
 
