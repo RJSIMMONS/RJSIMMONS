@@ -384,10 +384,12 @@ img{max-width:100%;display:block}
       <div class="block">
         <h3>What I did</h3>
         <ul class="dlist" id="d-points"></ul>
-        <h3>Gallery</h3>
-        <p style="color:var(--muted);font-size:14px;margin:0 0 14px">
-          Screenshots, diagrams, and evidence of the work go here.</p>
-        <div class="gallery" id="d-gallery"></div>
+        <div id="d-gallery-section">
+          <h3>Gallery</h3>
+          <p style="color:var(--muted);font-size:14px;margin:0 0 14px">
+            Screenshots, diagrams, and evidence of the work.</p>
+          <div class="gallery" id="d-gallery"></div>
+        </div>
         <div class="note" id="d-note"></div>
       </div>
       <aside class="sidecard">
@@ -479,8 +481,8 @@ const ROLES = [
       "Performed data migrations and maintained data integrity across sandbox and production environments.",
       "Provided technical consultancy, researching and delivering tailored solutions to specific business needs.",
     ],
-    gallery:[ {cap:"Add a screenshot"}, {cap:"Add a screenshot"} ],
-    note:"Add anything you're free to share from this role."
+    gallery:[],
+    note:""
   },
   {
     id:"nuvolar",
@@ -494,8 +496,8 @@ const ROLES = [
       "Diagnosed and fixed urgent bugs for rapid release, and reviewed pull requests for code quality.",
       "Built robust Apex using OOP patterns (service / factory classes, DTOs, trigger handlers), Batchable / Schedulable / Queueable jobs, REST web services, aggregate SOQL, and bulkified, well-tested code within governor limits.",
     ],
-    gallery:[ {cap:"Add a screenshot"} ],
-    note:"Client work — likely under NDA, so keep this to what you're permitted to show (architecture sketches you redraw yourself work well)."
+    gallery:[],
+    note:""
   },
   {
     id:"pwc",
@@ -511,8 +513,8 @@ const ROLES = [
       "Delivered custom solutions that saved the client thousands of euros per month in third-party licensing costs.",
       "Authored positive and negative test classes (80–90%+ coverage) and led weekly standup presentations across Belgian, Dutch, and Sri Lankan teams.",
     ],
-    gallery:[ {cap:"Add a redrawn diagram"} ],
-    note:"Enterprise/NDA work — share only redrawn, anonymised material. The CPU-performance fix is a great story to write up in your own words."
+    gallery:[],
+    note:""
   },
   {
     id:"adelanka",
@@ -525,7 +527,7 @@ const ROLES = [
       "Independently revitalised a dormant music-metadata project using .NET, Angular, XML, and XSLT, taking it through development, performance optimisation, testing, and production approval.",
     ],
     gallery:[],
-    note:"This is your pre-Salesforce foundation — keep it brief; it shows your engineering roots."
+    note:""
   },
 ];
 
@@ -591,15 +593,20 @@ function openDetail(id){
   document.getElementById("d-loc").textContent=`${r.dates} · ${r.loc}`;
   document.getElementById("d-points").innerHTML=r.points.map(p=>`<li>${p}</li>`).join("");
   document.getElementById("d-tags").innerHTML=r.tags.map(t=>`<span class="tag">${t}</span>`).join("");
+  // gallery: only show the section when the role has real images
   const g=document.getElementById("d-gallery");
-  if(r.gallery.length){
-    g.style.display="grid";
-    g.innerHTML=r.gallery.map(it=> it.src
-      ? `<a class="gtile shot" href="${it.src}" target="_blank" rel="noopener" title="Open full image">`
-        +`<img src="${it.src}" alt="${it.cap||''}" loading="lazy"><span class="shotcap">${it.cap||''}</span></a>`
-      : `<div class="gtile">${galIcon}<span class="cap">${it.cap||"Add image"}</span></div>`).join("");
-  } else { g.style.display="none"; g.innerHTML=""; }
-  document.getElementById("d-note").textContent=r.note||"";
+  const gsec=document.getElementById("d-gallery-section");
+  const shots=(r.gallery||[]).filter(it=>it.src);
+  if(shots.length){
+    gsec.style.display="";
+    g.innerHTML=shots.map(it=>
+      `<a class="gtile shot" href="${it.src}" target="_blank" rel="noopener" title="Open full image">`
+      +`<img src="${it.src}" alt="${it.cap||''}" loading="lazy"><span class="shotcap">${it.cap||''}</span></a>`).join("");
+  } else { gsec.style.display="none"; g.innerHTML=""; }
+  // note: only show when there's a visitor-facing note
+  const noteEl=document.getElementById("d-note");
+  if(r.note){ noteEl.style.display=""; noteEl.textContent=r.note; }
+  else { noteEl.style.display="none"; noteEl.textContent=""; }
   home.style.display="none"; detail.style.display="block";
   window.scrollTo({top:0,behavior:"instant"in window?"instant":"auto"});
   history.replaceState(null,"","#"+r.id);
