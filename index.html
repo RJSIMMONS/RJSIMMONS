@@ -598,6 +598,13 @@ function closeDetail(){
 }
 document.getElementById("backBtn").addEventListener("click",closeDetail);
 
+/* logo + nav links also return to the home view when on a detail page,
+   then the anchor's hash scrolls to the right section */
+function returnHome(){
+  if(detail.style.display!=="none"){ detail.style.display="none"; home.style.display="block"; }
+}
+document.querySelectorAll(".brand, .navlinks a").forEach(a=>a.addEventListener("click",returnHome));
+
 /* deep-link support: open detail if URL ends with a role id */
 window.addEventListener("DOMContentLoaded",()=>{
   const h=location.hash.replace("#","");
