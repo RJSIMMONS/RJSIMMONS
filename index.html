@@ -186,13 +186,19 @@ img{max-width:100%;display:block}
 .note{font-size:13.5px;color:var(--muted);background:#f0f4fa;border:1px dashed #c9d6e6;
   border-radius:10px;padding:12px 14px;margin-top:8px}
 /* gallery */
-.gallery{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:14px;margin-top:6px}
+.gallery{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:14px;margin-top:6px}
 .gtile{aspect-ratio:4/3;border:2px dashed #c2d0e2;border-radius:12px;background:#eef3fb;
   display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;
   color:#7488a0;padding:14px;gap:8px}
 .gtile svg{opacity:.6}
 .gtile .cap{font-size:12.5px;line-height:1.3}
 .gtile img{width:100%;height:100%;object-fit:cover;border-radius:10px}
+/* real screenshot tiles (clickable, captioned) */
+.gtile.shot{aspect-ratio:auto;display:block;padding:0;gap:0;overflow:hidden;
+  border:1px solid var(--line);background:var(--surface);text-decoration:none;color:inherit;transition:.18s}
+.gtile.shot:hover{box-shadow:var(--shadow-lg);transform:translateY(-2px);border-color:#cdd9ea}
+.gtile.shot img{width:100%;height:auto;aspect-ratio:16/10;object-fit:cover;object-position:top;border-radius:0}
+.gtile .shotcap{display:block;padding:10px 12px;font-size:12.5px;color:var(--muted);line-height:1.35;text-align:left}
 
 /* ---------- certifications ---------- */
 .certgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:14px}
@@ -452,8 +458,13 @@ const ROLES = [
       "Owned release management across Dev, UAT, and Production using Git-based workflows — deployments via pull requests and change sets with post-deployment verification.",
       "Established best practices and documentation, trained administrators on Git workflows, and supported agile delivery through Linear ticketing and cycle-based development.",
     ],
-    gallery:[ {cap:"Flow / automation diagram"}, {cap:"Dashboard or report"}, {cap:"Release / Git workflow"} ],
-    note:"This is my current role and the section I'll build out most — add your own screenshots, before/after flows, and dashboards here."
+    gallery:[
+      {src:"images/bc-work/opportunity-stage-validation.png", cap:"Opportunity sales path with a stage-sequence validation rule and in-stage guidance"},
+      {src:"images/bc-work/revenue-batch-apex.png", cap:"Custom Batch Apex aggregating revenue into snapshot records via SOQL"},
+      {src:"images/bc-work/direct-sales-dashboard.png", cap:"Global Direct Sales dashboard — regional pipeline and closed-won reporting"},
+      {src:"images/bc-work/knowledge-vault.png", cap:"BC Knowledge Vault — a custom internal knowledge base with cited AI search"},
+    ],
+    note:"A few examples of recent work, shown with test or anonymised data. Click any image to open it full size."
   },
   {
     id:"orfium",
@@ -583,7 +594,8 @@ function openDetail(id){
   if(r.gallery.length){
     g.style.display="grid";
     g.innerHTML=r.gallery.map(it=> it.src
-      ? `<div class="gtile"><img src="${it.src}" alt="${it.cap||''}"></div>`
+      ? `<a class="gtile shot" href="${it.src}" target="_blank" rel="noopener" title="Open full image">`
+        +`<img src="${it.src}" alt="${it.cap||''}" loading="lazy"><span class="shotcap">${it.cap||''}</span></a>`
       : `<div class="gtile">${galIcon}<span class="cap">${it.cap||"Add image"}</span></div>`).join("");
   } else { g.style.display="none"; g.innerHTML=""; }
   document.getElementById("d-note").textContent=r.note||"";
