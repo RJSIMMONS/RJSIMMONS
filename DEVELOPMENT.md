@@ -21,11 +21,11 @@ Edit the text there, not the markup.
 
 ## Open TODOs
 
-Search `index.html` for these placeholders and replace with real values:
+- Add `resume.pdf` to the repo root (both the hero and footer "Résumé" links point to it).
+- `--bc-green` — swap for Better Collective's exact brand-green hex.
+- Add Better Collective gallery screenshots to `images/` and reference them in the `ROLES` array.
 
-- `RESUME_PDF_URL`, `LINKEDIN_URL`, `TRAILBLAZER_URL`
-- ResearchGate publication link (`href="#"` in the Education block)
-- `--bc-green` — Better Collective's exact brand-green hex
+Done: LinkedIn, Trailblazer, and ResearchGate links are filled in (`index.html` + `README.md`).
 
 ## Local preview
 

@@ -46,10 +46,10 @@ Salesforce ecosystem, currently a Salesforce Administrator / Developer at **Bett
 
 ### 📫 How to reach me
 
-<!-- TODO: replace the placeholder URLs below with your real links -->
-- 💼 LinkedIn: [linkedin.com/in/your-handle](LINKEDIN_URL)
-- ⚡ Trailblazer: [trailblazer.me/your-handle](TRAILBLAZER_URL)
-- 🌐 Portfolio: [your portfolio site](PORTFOLIO_URL)
+- 💼 LinkedIn: [richard-jason-simmons](https://www.linkedin.com/in/richard-jason-simmons-19a75860/)
+- ⚡ Trailblazer: [rjsimmonssl](https://www.salesforce.com/trailblazer/rjsimmonssl)
+- 🌐 Portfolio: [rjsimmons.github.io/RJSIMMONS](https://rjsimmons.github.io/RJSIMMONS/)
+- 📄 Publication: [Customer Satisfaction on B2C E-commerce Platforms](https://www.researchgate.net/profile/Richard-Simmons-8) (ResearchGate)
 - ✉️ Email: RJSIMMONS_SL@Hotmail.com
 
 <!--
