@@ -1,0 +1,16 @@
+# Salesforce certification badge images go here.
+# Save each downloaded badge (PNG, ideally square / transparent) with the EXACT
+# filename below — the certification cards in index.html look for these names.
+# Any that are missing simply fall back to the blue check badge.
+#
+#   administrator.png
+#   platform-administrator-ii.png
+#   platform-app-builder.png
+#   platform-developer-i.png
+#   sales-cloud-consultant.png
+#   service-cloud-consultant.png
+#   agentforce-specialist.png
+#   ai-associate.png
+#
+# Where to get them: your Trailblazer profile (salesforce.com/trailblazer/rjsimmonssl)
+# or Credly (credly.com) — each earned badge has a download / share option.
