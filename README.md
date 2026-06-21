@@ -24,8 +24,8 @@ reliable Git-based releases, and reporting people actually adopt. When standard 
 the Apex and Lightning Web Components to go further. **7+ years** in software, **4.5+ years** across the
 Salesforce ecosystem, currently a Salesforce Administrator / Developer at **Better Collective**.
 
-- 👀 Interested in: **Salesforce**, plus **.NET** and JS frameworks (**LWC**, **Aura**, **Angular**, **React**)
-- 🌱 Currently: deepening **Agentforce** and **AI-driven automation** on the Salesforce platform
+- 👀 Interested in: **Salesforce**
+- 🌱 Currently: deepening **Agentforce** and **AI-driven automation** on the Salesforce platform using Claude
 - 🤝 Open to: collaborating on Salesforce automation, LWC components, and admin/dev best practices
 - 🎓 MBA (Distinction, UK) · BEng (Hons) Software Engineering (First-class, UK)
 
