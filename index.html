@@ -210,6 +210,7 @@ img{max-width:100%;display:block}
   padding:18px;box-shadow:var(--shadow);display:flex;gap:14px;align-items:flex-start}
 .cert .badge{flex:none;width:40px;height:40px;border-radius:10px;
   background:linear-gradient(135deg,var(--primary),var(--accent));display:grid;place-items:center;color:#fff}
+.cert .badge.prog{background:linear-gradient(135deg,#8f9db0,#b6c2d0)}
 .cert .logo{flex:none;width:54px;height:54px;object-fit:contain;border-radius:8px}
 .cert .nm{font-weight:600;color:var(--ink);font-size:14.5px;line-height:1.25}
 .cert .yr{font-family:var(--mono);font-size:12px;color:var(--muted);margin-top:3px}
@@ -348,7 +349,7 @@ img{max-width:100%;display:block}
     <div class="wrap">
       <p class="eyebrow reveal">// Verified</p>
       <h2 class="reveal">Salesforce certifications</h2>
-      <p class="lead reveal">Eight active credentials across administration, development, consulting, and AI.</p>
+      <p class="lead reveal">Eight active credentials across administration, development, consulting, and AI — with a ninth, Sharing &amp; Visibility Architect, in progress.</p>
       <div class="certgrid reveal" id="certgrid"></div>
     </div>
   </section>
@@ -456,13 +457,15 @@ const CERTS = [
   ["Service Cloud Consultant","2023","service-cloud-consultant.png"],
   ["Agentforce Specialist","2025","agentforce-specialist.png"],
   ["AI Associate","2024","ai-associate.png"],
+  // 4th field "progress" marks a not-yet-earned cert (no badge image, pending style)
+  ["Platform Sharing & Visibility Architect","Oct 2026","","progress"],
 ];
 
 const ROLES = [
   {
     id:"better-collective", featured:true,
     co:"Better Collective", title:"Salesforce Administrator / Developer",
-    dates:"Oct 2025 – Present", loc:"Denmark · remote from Belgrade, Serbia",
+    dates:"Oct 2025 – Present", loc:"Denmark · Hybrid from Belgrade, Serbia",
     preview:"Hands-on across a Sales Cloud org — automation, support, data, and releases — writing Apex and LWC when clicks aren't enough.",
     tags:["Flow","Apex","LWC","Sales Cloud","Git / Releases","Data Loader","SOQL","Linear","MCP","Obsidian"],
     points:[
@@ -554,13 +557,16 @@ SKILLS.forEach(([title,items])=>{
 /* ---------------- render: certs ---------------- */
 const cg=document.getElementById("certgrid");
 const certIcon=`<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>`;
+const progIcon=`<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><polyline points="12 7 12 12 15 14"/></svg>`;
 function fallbackBadge(){
   const s=document.createElement("span"); s.className="badge"; s.innerHTML=certIcon; return s;
 }
-CERTS.forEach(([nm,yr,img])=>{
+CERTS.forEach(([nm,yr,img,status])=>{
   const c=document.createElement("div"); c.className="cert";
   let mark;
-  if(img){
+  if(status==="progress"){
+    mark=document.createElement("span"); mark.className="badge prog"; mark.innerHTML=progIcon;
+  } else if(img){
     mark=document.createElement("img");
     mark.className="logo"; mark.src="images/certs/"+img; mark.alt=nm+" badge"; mark.loading="lazy";
     mark.onerror=function(){ this.replaceWith(fallbackBadge()); };
@@ -568,7 +574,8 @@ CERTS.forEach(([nm,yr,img])=>{
     mark=fallbackBadge();
   }
   const txt=document.createElement("div");
-  txt.innerHTML=`<div class="nm">${nm}</div><div class="yr">${yr} · verified</div>`;
+  const meta = status==="progress" ? `${yr} · in progress` : `${yr} · verified`;
+  txt.innerHTML=`<div class="nm">${nm}</div><div class="yr">${meta}</div>`;
   c.appendChild(mark); c.appendChild(txt);
   cg.appendChild(c);
 });
