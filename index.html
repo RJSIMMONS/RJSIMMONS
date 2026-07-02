@@ -144,7 +144,9 @@ img{max-width:100%;display:block}
 .rolecard:hover{box-shadow:0 18px 46px rgba(15,30,48,.15);transform:translateY(-3px);
   border-color:#fff;background:linear-gradient(180deg,#fff,rgba(255,255,255,.78))}
 .rolecard .top{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;align-items:baseline}
-.rolecard .co{font-family:var(--display);font-weight:600;font-size:19px;color:var(--ink)}
+.rolecard .co{font-family:var(--display);font-weight:600;font-size:19px;color:var(--ink);
+  display:inline-flex;align-items:center;gap:11px}
+.co-logo{flex:none;width:30px;height:30px;object-fit:cover;border-radius:7px}
 .rolecard .dates{font-family:var(--mono);font-size:13px;color:var(--muted);white-space:nowrap}
 .rolecard .title{color:var(--primary);font-weight:600;font-size:15px;margin:2px 0 4px}
 .rolecard .loc{color:var(--muted);font-size:13.5px;margin-bottom:14px}
@@ -557,7 +559,9 @@ const ROLES = [
       "Developed and maintained .NET / ASP.NET Core and Angular features — new development, defect resolution, testing, and documentation — with the UK team.",
       "Independently revitalised a dormant music-metadata project using .NET, Angular, XML, and XSLT, taking it through development, performance optimisation, testing, and production approval.",
     ],
-    gallery:[],
+    gallery:[
+      {src:"images/adelanka/metadata-console.png", cap:"Music-metadata file management console — from the dormant .NET/Angular product I revitalised end-to-end"},
+    ],
     note:""
   },
 ];
@@ -615,7 +619,7 @@ ROLES.forEach(r=>{
   b.className="rolecard reveal"+(r.featured?" featured":"");
   b.setAttribute("aria-label",`Open details for ${r.co}`);
   b.innerHTML=`
-    <div class="top"><span class="co">${r.co}</span><span class="dates">${r.dates}</span></div>
+    <div class="top"><span class="co"><img class="co-logo" src="images/companies/${r.id}.png" alt="" loading="lazy" onerror="this.remove()">${r.co}</span><span class="dates">${r.dates}</span></div>
     <div class="title">${r.title}</div>
     <div class="loc">${r.loc}</div>
     <p class="preview">${r.preview}</p>
