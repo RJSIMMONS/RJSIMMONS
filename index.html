@@ -213,6 +213,10 @@ img{max-width:100%;display:block}
 .cert .badge.prog{background:linear-gradient(135deg,#8f9db0,#b6c2d0)}
 .cert .logo{flex:none;width:54px;height:54px;object-fit:contain;border-radius:8px}
 .cert .logo.prog-logo{filter:grayscale(1) opacity(.5)}
+.cert .mark-wrap{position:relative;flex:none;display:inline-flex}
+.cert .prog-dot{position:absolute;top:-3px;right:-3px;width:15px;height:15px;border-radius:50%;
+  background:#F5C518;border:2px solid var(--surface);box-shadow:0 0 0 3px rgba(245,197,24,.3)}
+.cert .yr.yr-prog{color:#B8860B;font-weight:600}
 .cert .nm{font-weight:600;color:var(--ink);font-size:14.5px;line-height:1.25}
 .cert .yr{font-family:var(--mono);font-size:12px;color:var(--muted);margin-top:3px}
 
@@ -378,6 +382,7 @@ img{max-width:100%;display:block}
           </div>
         </div>
         <div class="edu">
+          <img class="edu-logo" src="images/edu/researchgate.png" alt="ResearchGate logo" loading="lazy" onerror="this.remove()">
           <div class="edu-body">
             <div class="top"><span class="deg">Publication</span><span class="yr">ResearchGate</span></div>
             <div class="sch">“Customer Satisfaction on B2C E-commerce Platforms” — MBA research ·
@@ -590,8 +595,16 @@ CERTS.forEach(([nm,yr,img,status])=>{
   }
   const txt=document.createElement("div");
   const meta = status==="progress" ? `${yr} · in progress` : `${yr} · verified`;
-  txt.innerHTML=`<div class="nm">${nm}</div><div class="yr">${meta}</div>`;
-  c.appendChild(mark); c.appendChild(txt);
+  txt.innerHTML=`<div class="nm">${nm}</div><div class="yr${status==="progress"?" yr-prog":""}">${meta}</div>`;
+  if(status==="progress"){
+    const wrap=document.createElement("span"); wrap.className="mark-wrap";
+    const dot=document.createElement("span"); dot.className="prog-dot";
+    wrap.appendChild(mark); wrap.appendChild(dot);
+    c.appendChild(wrap);
+  } else {
+    c.appendChild(mark);
+  }
+  c.appendChild(txt);
   cg.appendChild(c);
 });
 
