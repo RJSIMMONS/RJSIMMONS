@@ -247,6 +247,25 @@ img{max-width:100%;display:block}
 .edu .deg{font-family:var(--display);font-weight:600;font-size:17px;color:var(--ink)}
 .edu .yr{font-family:var(--mono);font-size:13px;color:var(--muted)}
 .edu .sch{color:var(--muted);margin-top:4px}
+/* AI training & certifications */
+.aicerts{margin-top:26px}
+.aihead{display:flex;align-items:center;gap:10px;font-family:var(--display);font-weight:600;
+  font-size:16px;color:var(--ink);margin:0 0 14px}
+.aihead .ai-ico{display:inline-flex}
+.aihead .ai-ico img{width:22px;height:22px;border-radius:5px;display:block}
+.cert-clickable{cursor:pointer;width:100%;text-align:left;font:inherit;color:inherit;transition:.18s}
+.cert-clickable:hover{box-shadow:var(--shadow-lg);transform:translateY(-2px);border-color:#cdd9ea}
+/* lightbox popup */
+.lightbox{position:fixed;inset:0;z-index:200;display:flex;align-items:center;justify-content:center;
+  background:rgba(8,16,26,.8);-webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px);padding:24px}
+.lightbox[hidden]{display:none}
+.lightbox-inner{max-width:min(940px,94vw);max-height:88vh;border-radius:14px;overflow:hidden;
+  box-shadow:0 30px 80px rgba(0,0,0,.5)}
+.lightbox-inner img{display:block;width:100%;height:auto;max-height:88vh;object-fit:contain;background:#fff}
+.lightbox-close{position:absolute;top:18px;right:22px;width:40px;height:40px;border-radius:50%;
+  border:1px solid rgba(255,255,255,.3);background:rgba(255,255,255,.12);color:#fff;font-size:22px;
+  line-height:1;cursor:pointer;display:grid;place-items:center;transition:.18s}
+.lightbox-close:hover{background:rgba(255,255,255,.24)}
 
 /* ---------- footer / contact ---------- */
 .foot{background:var(--ink);color:#cdddf0;padding:60px 0 40px}
@@ -408,6 +427,20 @@ img{max-width:100%;display:block}
           </div>
         </div>
       </div>
+
+      <div class="reveal aicerts">
+        <h3 class="aihead"><span class="ai-ico"><img src="images/ai/claude-icon.webp" alt=""></span> AI training &amp; certifications</h3>
+        <div class="certgrid">
+          <button class="cert cert-clickable" data-cert-img="images/ai/claude-101.jpg" data-cert-title="Claude 101 — Certificate of Completion (Anthropic)">
+            <img class="logo" src="images/ai/claude-icon.webp" alt="Claude" loading="lazy">
+            <div><div class="nm">Claude 101</div><div class="yr">2026 · Anthropic</div></div>
+          </button>
+          <button class="cert cert-clickable" data-cert-img="images/ai/claude-code-101.jpg" data-cert-title="Claude Code 101 — Certificate of Completion (Anthropic)">
+            <img class="logo" src="images/ai/claude-icon.webp" alt="Claude" loading="lazy">
+            <div><div class="nm">Claude Code 101</div><div class="yr">2026 · Anthropic</div></div>
+          </button>
+        </div>
+      </div>
     </div>
   </section>
 
@@ -464,6 +497,12 @@ img{max-width:100%;display:block}
     <p class="fine">© <span id="yr"></span> Richard Jason Simmons · Built as a living portfolio.</p>
   </div>
 </footer>
+
+<!-- ===================== LIGHTBOX (certificate popup) ===================== -->
+<div id="lightbox" class="lightbox" hidden>
+  <button class="lightbox-close" id="lightboxClose" aria-label="Close">&times;</button>
+  <div class="lightbox-inner"><img id="lightbox-img" src="" alt=""></div>
+</div>
 
 <script>
 /* ============================================================
@@ -703,6 +742,16 @@ document.getElementById("yr").textContent=new Date().getFullYear();
 const tgl=document.getElementById("navToggle"), lnks=document.getElementById("navLinks");
 tgl.addEventListener("click",()=>{const o=lnks.classList.toggle("open");tgl.setAttribute("aria-expanded",o)});
 lnks.querySelectorAll("a").forEach(a=>a.addEventListener("click",()=>lnks.classList.remove("open")));
+
+/* lightbox: open a certificate in a popup; click outside or Esc to close */
+const lb=document.getElementById("lightbox"), lbImg=document.getElementById("lightbox-img");
+function openLightbox(src,alt){ lbImg.src=src; lbImg.alt=alt||""; lb.hidden=false; document.body.style.overflow="hidden"; }
+function closeLightbox(){ lb.hidden=true; lbImg.src=""; document.body.style.overflow=""; }
+lb.addEventListener("click",e=>{ if(e.target===lb) closeLightbox(); });
+document.getElementById("lightboxClose").addEventListener("click",closeLightbox);
+document.addEventListener("keydown",e=>{ if(e.key==="Escape" && !lb.hidden) closeLightbox(); });
+document.querySelectorAll(".cert-clickable").forEach(b=>
+  b.addEventListener("click",()=>openLightbox(b.dataset.certImg,b.dataset.certTitle)));
 
 /* scroll reveal */
 const io=new IntersectionObserver((es)=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add("in");io.unobserve(e.target);}}),{threshold:.12});
