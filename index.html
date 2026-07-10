@@ -247,6 +247,17 @@ img{max-width:100%;display:block}
 .edu .deg{font-family:var(--display);font-weight:600;font-size:17px;color:var(--ink)}
 .edu .yr{font-family:var(--mono);font-size:13px;color:var(--muted)}
 .edu .sch{color:var(--muted);margin-top:4px}
+/* AI training & certifications */
+.aicerts{margin-top:26px}
+.aihead{display:flex;align-items:center;gap:10px;font-family:var(--display);font-weight:600;
+  font-size:16px;color:var(--ink);margin:0 0 14px}
+.aihead .ai-ico{display:inline-flex;color:var(--accent)}
+.aigrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:14px}
+.aicert{display:block;border:1px solid var(--line);border-radius:var(--radius);overflow:hidden;
+  background:var(--surface);box-shadow:var(--shadow);text-decoration:none;color:inherit;transition:.18s}
+.aicert:hover{box-shadow:var(--shadow-lg);transform:translateY(-2px);border-color:#cdd9ea}
+.aicert img{width:100%;aspect-ratio:4/3;object-fit:cover;display:block}
+.aicert .aicap{display:block;padding:11px 14px;font-family:var(--mono);font-size:12.5px;color:var(--muted)}
 
 /* ---------- footer / contact ---------- */
 .foot{background:var(--ink);color:#cdddf0;padding:60px 0 40px}
@@ -406,6 +417,20 @@ img{max-width:100%;display:block}
             <div class="sch">“Customer Satisfaction on B2C E-commerce Platforms” — MBA research ·
               <a href="https://www.researchgate.net/profile/Richard-Simmons-8" target="_blank" rel="noopener">view</a></div>
           </div>
+        </div>
+      </div>
+
+      <div class="reveal aicerts">
+        <h3 class="aihead"><span class="ai-ico"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9.937 15.5A2 2 0 0 0 8.5 14.063l-6.135-1.582a.5.5 0 0 1 0-.962L8.5 9.936A2 2 0 0 0 9.937 8.5l1.582-6.135a.5.5 0 0 1 .963 0L14.063 8.5A2 2 0 0 0 15.5 9.937l6.135 1.581a.5.5 0 0 1 0 .964L15.5 14.063a2 2 0 0 0-1.437 1.437l-1.582 6.135a.5.5 0 0 1-.963 0z"/><path d="M20 3v4"/><path d="M22 5h-4"/><path d="M4 17v2"/><path d="M5 18H3"/></svg></span> AI training &amp; certifications</h3>
+        <div class="aigrid">
+          <a class="aicert" href="images/ai/claude-101.jpg" target="_blank" rel="noopener" title="Open certificate">
+            <img src="images/ai/claude-101.jpg" alt="Claude 101 — Certificate of Completion, Anthropic" loading="lazy">
+            <span class="aicap">Claude 101 · Anthropic</span>
+          </a>
+          <a class="aicert" href="images/ai/claude-code-101.jpg" target="_blank" rel="noopener" title="Open certificate">
+            <img src="images/ai/claude-code-101.jpg" alt="Claude Code 101 — Certificate of Completion, Anthropic" loading="lazy">
+            <span class="aicap">Claude Code 101 · Anthropic</span>
+          </a>
         </div>
       </div>
     </div>
