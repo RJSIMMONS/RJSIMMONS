@@ -24,4 +24,4 @@ The date prefix keeps the folder sorted oldest → newest at a glance.
 
 | Date | Version | File |
 |---|---|---|
-| 2026-06-21 | v26.6 | `2026-06-21_Richard-Simmons-Resume_v26.6.pdf` |
+| 2026-08-05 | Aug v1 | `2026-08-05_Richard-Simmons-Resume_Aug-v1.pdf` |
